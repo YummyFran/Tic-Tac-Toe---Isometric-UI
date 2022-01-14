@@ -1,0 +1,144 @@
+:root {
+    --cell-size: calc(100vw * .2);
+    --mark-size: calc(var(--cell-size) * .7);
+    --size-limit: 15em;
+    --mark-size-limit: calc(var(--size-limit) * .7);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    transform-style: preserve-3d;
+    background-color: #f1f1f1;
+}
+
+/* Drawing the Board and making it Isometric */
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, auto);
+    transform: rotateX(60deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+    background-color: transparent;
+}
+
+.cell {
+    background: #f1f1f1;
+    height: var(--cell-size);
+    width: var(--cell-size);
+    max-width: var(--size-limit);
+    max-height: var(--size-limit);
+    border:  7px  solid white;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+.cell:nth-child(-n + 3) {
+    border-top: none;
+}
+
+.cell:nth-last-child(-n + 3) {
+    border-bottom: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n) {
+    border-right: none;
+}
+
+/* Styling the X */
+
+.cell.x::before, .cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    content: "";
+    width: calc(var(--mark-size) * 0.2);
+    height: calc(var(--mark-size) * 1.1);
+    max-width: calc(var(--mark-size-limit) * .2);
+    max-height: calc(var(--mark-size-limit) * 1.1);
+    background-color: white;
+    position:  absolute;
+    z-index: 5;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+    transform: rotate(45deg) translateZ(10px);
+    box-shadow: 10px 0 0 -0.5px #d9d9d9;
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg) translateZ(10px);
+    box-shadow: 0 10px 0 -0.5px #d9d9d9;
+}
+
+/* Styling the O */
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+    content: "";
+    width: var(--mark-size);
+    height: var(--mark-size);
+    max-width: var(--mark-size-limit);
+    max-height: var(--mark-size-limit);
+    background-color: white;
+    position:  absolute;
+    border-radius: 50%;
+    box-shadow: 10px 10px 0 -0.5px #d9d9d9;
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+    content: '';
+    width: calc(var(--mark-size) * .6);
+    height: calc(var(--mark-size) * .6);
+    max-width: calc(var(--mark-size-limit) * .6);
+    max-height: calc(var(--mark-size-limit) * .6);
+    background-color: #f1f1f1;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: inset 10px 10px 0 -0.5px #d9d9d9;
+}
+
+.cell.o::before, .cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+    transform: translateZ(10px);
+}
+
+/* Cell Hover */ 
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after  {
+    background-color: #f9f9f9;
+}
+
+.board.o .cell:not(.x):not(.o):hover::before {
+   background-color: #f9f9f9;
+}
+
+/* Rotating Animation */
+
+.game-scene {
+    transform: rotateX(30deg);
+}
