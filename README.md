@@ -1,9 +1,9 @@
 # Tic-Tac-Toe---Isometric-UI
 
-// Saturday,  December  18, 2021 @7:03PM
-// I just finished Coding the "Easy" AI!!
+###Saturday,  December  18, 2021 @7:03PM
+> I just finished Coding the "Easy" AI!!
 
-/*
+
     2 days ago, typhoon Odette strikes our place.
     Wala kaming kuryente until now.
     Luckily, katapat lang ng bahay namin ang factory ng tempura
@@ -20,4 +20,3 @@
     social media platform, that means restored na internet at electricity
     connections namin. 
     So yun lang, pin ko lang tong moment nato kasi apakasaya ko AHHAAHAHA
-*/
